@@ -20,8 +20,9 @@ public class Board extends JPanel implements ActionListener {
 
     private final int B_WIDTH = 600;
     private final int B_HEIGHT = 600;
-    private final int DOT_SIZE = 20;
-    private final int ALL_DOTS = 900;
+    private final int DOT_SIZE = 20; // Размер тела змейки
+    private final int ALL_DOTS = B_WIDTH*B_HEIGHT/(DOT_SIZE*DOT_SIZE); //900 Максимальное кол-во точке змейки
+
     private final int RAND_POS = 29;
     private final int DELAY = 140;
 
@@ -54,7 +55,7 @@ public class Board extends JPanel implements ActionListener {
         initGame();
     }
 
-    private void loadImages() {
+    private void loadImages() {     //Иконки не трогать!!!!(пока не нарисуешь лучше)
 
         ImageIcon iid = new ImageIcon("tail.png");
         ball = iid.getImage();
@@ -66,18 +67,18 @@ public class Board extends JPanel implements ActionListener {
         head = iih.getImage();
     }
 
-    private void initGame() {
+    private void initGame() { //Инициализация игры
 
-        dots = 3;
+        dots = 3;//Начальное кол-во точек 3
 
-        for (int z = 0; z < dots; z++) {
+        for (int z = 0; z < dots; z++) {        //Начальные позиции 100,100 80,100 60,100
             x[z] = 100 - z * 20;
             y[z] = 100;
         }
 
-        locateApple();
+        locateApple();//Разместить биткоин
 
-        timer = new Timer(DELAY, this);
+        timer = new Timer(DELAY, this);// Это на подготовку задержка на подготовку
         timer.start();
     }
 
