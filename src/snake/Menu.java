@@ -2,9 +2,10 @@ package snake;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Menu extends JFrame {
+public class Menu extends JFrame implements ActionListener {
     public Menu() {
         super("Snake");
         setSize(600, 600);
@@ -24,7 +25,19 @@ public class Menu extends JFrame {
 
         setContentPane(jPanel);
 
-        ActionListener actionListener = new EventHandler.NewGameButton();
-        newGameButton.addActionListener(actionListener);
+//        ActionListener actionListener = new EventHandler.NewGameButton();
+//        newGameButton.addActionListener(actionListener);
+//        exitButton.addActionListener(actionListener);
+        newGameButton.addActionListener(this::actionPerformed);
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JFrame ex = new Snake();
+                ex.setVisible(true);
+            }
+        });
     }
 }
