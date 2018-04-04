@@ -1,6 +1,8 @@
 package snake;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 
@@ -20,12 +22,9 @@ public class Snake extends JFrame {
 
     public static void main(String[] args) {
 
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JFrame ex = new Snake();
-                ex.setVisible(true);
-            }
-        });
+        JFrame menu = new Menu();
+        menu.setVisible(true);
     }
+
+
 }

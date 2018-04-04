@@ -1,2 +1,5 @@
-�������� � ���������� Swing
+﻿Введение в библиотеку Swing
 https://math.sgu.ru/sites/chairs/prinf/materials/java/lesson8.htm
+
+JButton кнопка — обработка нажатия
+https://javaswing.wordpress.com/2009/07/26/jbutton_pressing/
