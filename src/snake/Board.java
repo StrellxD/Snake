@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 
+import javax.sound.midi.Soundbank;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -129,22 +130,6 @@ public class Board extends JPanel implements ActionListener {
 
     private void checkApple() {
 
-        if ((x[0] == apple_x-40) && (y[0] == apple_y)) { //left
-            //dots++;
-            locateApple();
-        }
-        if ((x[0] == apple_x) && (y[0] == apple_y+40)) { //left
-            //dots++;
-            locateApple();
-        }
-        if ((x[0] == apple_x) && (y[0] == apple_y-40)) { //left
-            //dots++;
-            locateApple();
-        }
-        if ((x[0] == apple_x+40) && (y[0] == apple_y)) { //left
-            //dots++;
-            locateApple();
-        }
         if ((x[0] == apple_x) && (y[0] == apple_y)) {
             dots++;
             locateApple();
@@ -206,24 +191,29 @@ public class Board extends JPanel implements ActionListener {
     }
 
     private void locateApple() {
+        List<Integer> xs=IntStream.range(0,dots).map(i->x[i]).boxed().collect(Collectors.toList()); //Координаты х каждого блокка змейки
+        List<Integer> ys=IntStream.range(0,dots).map(i->y[i]).boxed().collect(Collectors.toList());
 
-        //int r = (int) (Math.random() * RAND_POS);
-        //int r = (int) (Math.random() * RAND_POS);
-        List xs=IntStream.range(0,dots).map(i->x[i]/DOT_SIZE).boxed().collect(Collectors.toList());
-        List ys=IntStream.range(0,dots).map(i->x[i]/DOT_SIZE).boxed().collect(Collectors.toList());
+        List<ArrayList<Integer>> grid=new ArrayList<>();//Массив 2x900 для хранения всех возможных X и Y змейки
+        for (int i:IntStream.range(0,30).toArray())
+        {
+            for (int j:IntStream.range(0,30).toArray()){
+                ArrayList<Integer> a= new ArrayList<>();
+                a.add(i*DOT_SIZE);
+                a.add(j*DOT_SIZE);
+                grid.add(a);
+            }
+        }
+        List<ArrayList<Integer>> filteredGrid=grid.stream().filter(i-> //фильтрум точки убирая все из xs и ys
+                !(xs.contains(i.get(0))&&ys.contains(i.get(1))) ).collect(Collectors.toList());
+        ArrayList<Integer> randomDot=filteredGrid.get((int)(Math.random() * filteredGrid.size())); //выбираем рандомное новое положение
+        apple_x=randomDot.get(0);
+        apple_y=randomDot.get(1);
+        //List<Integer>  randX=IntStream.range(0,B_WIDTH/DOT_SIZE).filter(i->!xs.contains(i)).boxed().collect(Collectors.toList());
+        //List<Integer> randY=IntStream.range(0,B_HEIGHT/DOT_SIZE).filter(i->!ys.contains(i)).boxed().collect(Collectors.toList());
+        //apple_x = (randX.get((int)(Math.random()*randX.size())) * DOT_SIZE);
+        //apple_y = (randY.get((int)(Math.random()*randX.size())) * DOT_SIZE);
 
-        Map s=new HashMap<Integer,Integer>();
-        for (int i :IntStream.range(0,dots).toArray())
-            s.put(xs.get(i),ys.get(i));
-
-        List<Integer>  randX=IntStream.range(0,B_WIDTH/DOT_SIZE).filter(i->!xs.contains(i)).boxed().collect(Collectors.toList());
-        List<Integer> randY=IntStream.range(0,B_HEIGHT/DOT_SIZE).filter(i->!ys.contains(i)).boxed().collect(Collectors.toList());
-        for (int i : randX)
-            System.out.print(i+" ");
-
-        apple_x = (randX.get((int)(Math.random()*randX.size())) * DOT_SIZE);
-        apple_y = (randY.get((int)(Math.random()*randX.size())) * DOT_SIZE);
-        System.out.println("\n"+apple_x + " " + apple_y);
 
     }
 
