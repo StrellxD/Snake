@@ -13,15 +13,34 @@ public class Menu extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
 
         JPanel jPanel = new JPanel();
-        jPanel.setLayout(new GridLayout(3, 1, 5, 5));
+        jPanel.setBackground(Color.BLACK);
+
+        BoxLayout ex=new BoxLayout(jPanel, BoxLayout.Y_AXIS);
+        ex.preferredLayoutSize(jPanel);
+        jPanel.setLayout(ex);
 
         JButton newGameButton = new JButton("Новая игра");
-        JButton aboutButton = new JButton("О игре");
+        newGameButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        newGameButton.setForeground(Color.WHITE);
+        newGameButton.setBackground(Color.BLACK);
+        newGameButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        //newGameButton.setAlignmentY(Component.CENTER_ALIGNMENT);
+        JButton aboutButton = new JButton("Об игре");
+        aboutButton.setBackground(Color.BLACK);
+        aboutButton.setForeground(Color.WHITE);
+        aboutButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        aboutButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        //aboutButton.setAlignmentY(Component.CENTER_ALIGNMENT);
         JButton exitButton = new JButton("Выход");
-
+        exitButton.setBackground(Color.BLACK);
+        exitButton.setForeground(Color.WHITE);
+        exitButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        //exitButton.setAlignmentY(Component.CENTER_ALIGNMENT);
         jPanel.add(newGameButton);
         jPanel.add(aboutButton);
         jPanel.add(exitButton);
+
 
         setContentPane(jPanel);
 
