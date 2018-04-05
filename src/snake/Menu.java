@@ -16,6 +16,8 @@ public class Menu extends JFrame implements ActionListener {
         jPanel.setBackground(Color.BLACK);
 
         BoxLayout ex=new BoxLayout(jPanel, BoxLayout.Y_AXIS);
+        BorderLayout e= new BorderLayout();
+
         ex.preferredLayoutSize(jPanel);
         jPanel.setLayout(ex);
 
@@ -35,11 +37,12 @@ public class Menu extends JFrame implements ActionListener {
         exitButton.setBackground(Color.BLACK);
         exitButton.setForeground(Color.WHITE);
         exitButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        exitButton.setPreferredSize(new Dimension(200, 100));
         exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         //exitButton.setAlignmentY(Component.CENTER_ALIGNMENT);
-        jPanel.add(newGameButton);
-        jPanel.add(aboutButton);
-        jPanel.add(exitButton);
+        jPanel.add(newGameButton,BorderLayout.CENTER);
+        jPanel.add(aboutButton,BorderLayout.CENTER);
+        jPanel.add(exitButton,BorderLayout.CENTER);
 
 
         setContentPane(jPanel);
@@ -56,6 +59,7 @@ public class Menu extends JFrame implements ActionListener {
             public void run() {
                 JFrame ex = new Snake();
                 ex.setVisible(true);
+
             }
         });
     }

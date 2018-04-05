@@ -1,5 +1,7 @@
 package snake;
 
+
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -11,6 +13,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -92,6 +98,12 @@ public class Board extends JPanel implements ActionListener {
 
         if (inGame) {
 
+            g.drawImage(apple, apple_x, apple_y, this);
+            locateApple();
+            g.drawImage(apple, apple_x, apple_y, this);
+            locateApple();
+            g.drawImage(apple, apple_x, apple_y, this);
+            locateApple();
             g.drawImage(apple, apple_x, apple_y, this);
 
             for (int z = 0; z < dots; z++) {
@@ -186,11 +198,19 @@ public class Board extends JPanel implements ActionListener {
 
     private void locateApple() {
 
-        int r = (int) (Math.random() * RAND_POS);
-        apple_x = ((r * DOT_SIZE));
+        //int r = (int) (Math.random() * RAND_POS);
+        //int r = (int) (Math.random() * RAND_POS);
+        List xs=IntStream.range(0,dots).map(i->x[i]/DOT_SIZE).boxed().collect(Collectors.toList());
+        List ys=IntStream.range(0,dots).map(i->x[i]/DOT_SIZE).boxed().collect(Collectors.toList());
+        List<Integer>  randX=IntStream.range(0,B_WIDTH/DOT_SIZE).filter(i->!xs.contains(i)).boxed().collect(Collectors.toList());
+        List<Integer> randY=IntStream.range(0,B_HEIGHT/DOT_SIZE).filter(i->!ys.contains(i)).boxed().collect(Collectors.toList());
+        for (int i : randX)
+            System.out.print(i+" ");
 
-        r = (int) (Math.random() * RAND_POS);
-        apple_y = ((r * DOT_SIZE));
+        apple_x = (randX.get((int)(Math.random()*randX.size())) * DOT_SIZE);
+        apple_y = (randY.get((int)(Math.random()*randX.size())) * DOT_SIZE);
+        System.out.println("\n"+apple_x + " " + apple_y);
+
     }
 
     @Override
