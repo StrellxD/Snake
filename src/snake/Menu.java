@@ -6,11 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Menu extends JFrame implements ActionListener {
+    public static boolean visible;
     public Menu() {
         super("Snake");
         setSize(600, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null);                                              //Окно в центре
 
         JPanel jPanel = new JPanel();
         jPanel.setBackground(Color.BLACK);
@@ -47,6 +48,7 @@ public class Menu extends JFrame implements ActionListener {
 
         setContentPane(jPanel);
 
+
 //        ActionListener actionListener = new EventHandler.NewGameButton();
 //        newGameButton.addActionListener(actionListener);
 //        exitButton.addActionListener(actionListener);
@@ -62,5 +64,6 @@ public class Menu extends JFrame implements ActionListener {
 
             }
         });
+
     }
 }

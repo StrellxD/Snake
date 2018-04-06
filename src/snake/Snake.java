@@ -25,6 +25,4 @@ public class Snake extends JFrame {
         JFrame menu = new Menu();
         menu.setVisible(true);
     }
-
-
 }
