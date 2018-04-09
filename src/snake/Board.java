@@ -19,8 +19,7 @@ import java.util.stream.IntStream;
 
 
 import javax.sound.midi.Soundbank;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
@@ -31,7 +30,7 @@ public class Board extends JPanel implements ActionListener {
     private final int ALL_DOTS = B_WIDTH*B_HEIGHT/(DOT_SIZE*DOT_SIZE); //900 Максимальное кол-во точке змейки
 
     private final int RAND_POS = 29;
-    private final int DELAY = 140;
+    private final int DELAY = 100;
 
     private final int x[] = new int[ALL_DOTS];
     private final int y[] = new int[ALL_DOTS];
@@ -111,6 +110,7 @@ public class Board extends JPanel implements ActionListener {
 
             Toolkit.getDefaultToolkit().sync();
 
+
         } else {
 
             gameOver(g);
@@ -119,13 +119,15 @@ public class Board extends JPanel implements ActionListener {
 
     private void gameOver(Graphics g) {
 
-        String msg = "Game Over. Убейся об стену";
+        String msg = "Game Over. Новую?";
         Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics metr = getFontMetrics(small);
 
         g.setColor(Color.white);
         g.setFont(small);
         g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
+
+
     }
 
     private void checkApple() {
